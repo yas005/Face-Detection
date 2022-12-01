@@ -108,16 +108,6 @@ If the image size is resized larger than the original image, it is similar to th
 ![mov_001_030700_224](https://user-images.githubusercontent.com/88639269/197601789-95582461-4ccc-4507-92e4-6302e18d35ca.jpeg)
 ![mov_001_030700](https://user-images.githubusercontent.com/88639269/197601733-0b79ae36-7f9a-45a0-a481-10781ee946ca.jpeg)
 
-
-## 10. 2022_11_10 update
-
-#### Video dataset Download
-[HOLLYWOOD.mp4](https://drive.google.com/file/d/1OCFJz6h26uqTBUca2hQDerNl1noOcN5z/view?usp=sharing)    
-(place ```"HOLLYWOOD.mp4"``` at ```"./video/HOLLYWOOD.mp4"```)    
-#### Image dataset Download   
-[HOLLYWOOD.jpeg](https://drive.google.com/file/d/1IC3CTQxkKWzI2RZmwmi-BHO7J1GcRe2i/view?usp=sharing)     
-(place ```"HOLLYWOOD.jpeg"``` at ```"./test_dataset/test_image/HOLLYWOOD"```)  
-
 #### [options]
 
 ```
