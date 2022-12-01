@@ -2,20 +2,10 @@
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/44921488/192144865-cf819b6b-c066-417f-8662-35c59fce4677.gif)
 
-##### ** meaning of the number at the top of the bounding box = confidence score
-( 관련 설명 : https://techblog-history-younghunjo1.tistory.com/178 )
-
 ## 1. Get Ready
 dataset download : [HollywoodHeads Dataset](https://drive.google.com/file/d/1T5LWSezp2xeSqr1GBskOtBczXQ8ew6q7/view?usp=sharing)  
 Wider-face trained YOLOX-X Weight download : [yolox_x.pth](https://drive.google.com/file/d/17U4TgZf7crBV8yZ1kGHt0MeU6hLn2Vfl/view?usp=sharing)    
-(place ```"yolox_x.pth"``` at ```"./yolox_x.pth"```)   
-Wider-face trained YOLOX-L Weight download : [yolox_l.pth](https://drive.google.com/file/d/1R7G5HaLwRjoRgiFU9SN8fKWgoN1sMHro/view?usp=sharing)  
-(place ```"yolox_l.pth"``` at ```"./yolox_l.pth"```)  
-Wider-face trained YOLOX-M Weight download : [yolox_m.pth](https://drive.google.com/file/d/1pZrGu16NNXG7hZpxx3-k4ShvKa2qLbyt/view?usp=sharing)    
-(place ```"yolox_m.pth"``` at ```"./yolox_m.pth"```)   
-PIPNet Weight download : [epoch59.pth](https://drive.google.com/file/d/1xmdZogBqFH9n55gBnpBjZvcG0QBMzFIH/view?usp=sharing)      
-(place ```"epoch59.pth"``` at ```"./YOLOX/epoch59.pth"```)
-##### If you want to test with your video dataset, you have to change the video to images.
+
 ```
 python video2image.py --path "video path"
 ```
@@ -38,22 +28,6 @@ pip3 install -v -e .  # or  python3 setup.py develop
 ```
 
 #### update requirements.txt (2022_11_14)
-```
-Python library
-- 유지 : 1~15
-- 변경 : 16~17 (downgrade)
-- 추가 : 18~24
-```
-
-- #### pytorch version(2022_11_14)     
-cvlab : 1.11.0  
-dgcab(Dockerfile) : 1.8.2
-
-As a result of comparising the two versions, the inference time is 3times different.    
-(1.11.0 : 13 minutes, 1.8.2 : 46 minutes on a deepyolox-m model)    
-```It is recommended to use a higher version of PyTorch.```
-
-
 
 ## 3. YOLOX-X Evaluation on HollywoodHeads Test Dataset
 ```
@@ -116,19 +90,7 @@ and you can get a predicted landmark image at ```"./test_dataset/yolox_deepsort_
 
 ##### [Options]![image (2)](https://user-images.githubusercontent.com/88639269/194553890-85035967-60a1-4d60-8448-a2958dc16ee4.png)
 
-## 7. To check the results on video 
-1. make a directory
-```
-cd video
-mkdir input
-```
-2. move all images to a directory(```"./video/input"```)
-3. ``` python image2video.py --video_name "video name"```
-
-   ex) python image2video.py --video_name yolox_result (= create "yolox_result.mp4")
-
-
-## 8. To train YOLOX-X on Custom Dataset (e.g., HollywoodsHead Dataset)
+## 7. To train YOLOX-X on Custom Dataset (e.g., HollywoodsHead Dataset)
 You need a dataset with COCO style data format.  
 To convert Pascal VOC format to COCO format, please refer [voc2coco](https://github.com/yukkyo/voc2coco)  
 Put your data at ```./YOLOX/datasets/{YOUR_DATASET}```
@@ -136,17 +98,6 @@ Put your data at ```./YOLOX/datasets/{YOUR_DATASET}```
 python tools/train.py -n yolox-x -d 1 -b 16 --fp16 --logger wandb wandb-project yolox-face
 ```
 
-## 9. Resize Test on HollywoodHeads Test Dataset
-
-Test Dataset : HollywoodHead Dataset      
-Size : 224 x 528
-
-[ Resize image -- mAP(%)     ]
-```
-1. 95 x 224 : 68.49%
-2. 224 x 528 (original size) : 72.01%
-3. 400 x 942 : 71.91%
-```
 #### Result:
 If the image size is resized smaller than the original image, performance(mAP matrix value) will be lower as expected. 
 However, the performance does not deteriorate much.    
@@ -184,20 +135,6 @@ python facedetect.py  ```(video/image)```  --name ```"사용할 모델-backbone�
 
 --save_path ```"얼굴탐색 이미지/정보를 저장할 경로"``` --save ```"얼굴탐색 이미지 저장 여부(y/n)"```
 
-#### --name
-- yolox model : yolox-x, yolox-l, yolox-m
-(3가지 모델 비교 : https://github.com/Megvii-BaseDetection/YOLOX) 
-- yolox+deepsort model : deepyolox-x, deepyolox-l, deepyolox-m
-- model and weight(--ckpt)
-
-![image](https://user-images.githubusercontent.com/88639269/201102288-291469e9-8914-4365-b010-10a215ff5f4f.png)
-
-
-
-
-- deepyolox-x = yolox-x + deepsort 
-- deepyolox-l = yolox-l + deepsort 
-- deepyolox-m = yolox-m + deepsort
 
 #### --tsize (resize)
 
