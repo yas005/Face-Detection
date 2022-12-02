@@ -58,39 +58,7 @@ python main.py --pred_path yolox_deepsort_pred --gt_path test_annotations_txt
 ```
 #### YOLOX-X + DeepSORT mAP : 71.91% (Train: Wider Face, Test: HollywoodHeads)
 
-If you want to use image files in ```bitmap format``` , you have to change the code``` "def track_images()"``` as below.                     
-[before]     
-``` 
-imgs = natsorted(glob(os.path.join(args.path,'*.png')) + glob(os.path.join(args.path,'*.jpg')) + glob(os.path.join(args.path,'*.jpeg')))
-```
-[after]
-```
-imgs = natsorted(glob(os.path.join(args.path,'*.png')) + glob(os.path.join(args.path,'*.jpg')) + glob(os.path.join(args.path,'*.jpeg'))+ glob(os.path.join(args.path,'*.bmp')))
-```
-
-
-## 5. YOLOX-X + PIPNet landmark Test on HollywoodHeads Test Dataset
-```
-cd YOLOX
-python tools/demo_landmark.py image -n yolox-x -c "../yolox_x.pth" --conf 0.25 --nms 0.45 --tsize 640 --device gpu --image_data_path "../test_dataset/test_image"
-```
-to save the inference result of image, add ```--save result``` at the end of the command line.  
-When inference is done, you can get a predicted annotation at ```"./test_dataset/yolox_x_lmk_pred",```
-and you can get a predicted landmark image at ```"./YOLOX_outputs/yolox_x/vis_res_lmk" ```
-
-
-## 6. YOLOX-X + DeepSORT + PIPNet landmark Test on HollywoodHeads Test Dataset
-
-```
-python demo_landmark.py --path test_dataset/test_image --pred_save_path ./test_dataset/yolox_deepsort_lmk_pred/ --pred_save_img ./test_dataset/test_pred_lmk_image/
-```
-you can get a predicted annotation at ```"./test_dataset/yolox_deepsort_lmk_pred".```
-and you can get a predicted landmark image at ```"./test_dataset/yolox_deepsort_lmk_image"```
-
-
-##### [Options]![image (2)](https://user-images.githubusercontent.com/88639269/194553890-85035967-60a1-4d60-8448-a2958dc16ee4.png)
-
-## 7. To train YOLOX-X on Custom Dataset (e.g., HollywoodsHead Dataset)
+## 4. To train YOLOX-X on Custom Dataset (e.g., HollywoodsHead Dataset)
 You need a dataset with COCO style data format.  
 To convert Pascal VOC format to COCO format, please refer [voc2coco](https://github.com/yukkyo/voc2coco)  
 Put your data at ```./YOLOX/datasets/{YOUR_DATASET}```
@@ -140,27 +108,6 @@ ex) ```original frame size : 400 x 200```     &rarr;     ```--tsize 300```     &
            
 ![image (5)](https://user-images.githubusercontent.com/88639269/201271582-48c88999-ae31-4908-b954-8192951bc974.png)
 
-
-### Using YOLOX
-
-1. Video
-```
-python facedetect.py video  --name yolox-x  --ckpt ./yolox_x.pth --test_path ./video/HOLLYWOOD.mp4  --save_path ./test_dataset --save y
-```
-
-2. Image
-```
-python facedetect.py image  --name yolox-x --ckpt ./yolox_x.pth --test_path ./test_dataset/test_image/HOLLYWOOD --save_path ./test_dataset --save y 
-```
-
-
-### Using YOLOX + Deepsort
-
-1. Video
-```
-python facedetect.py video --name deepyolox-x --ckpt ./yolox_x.pth --test_path ./video/HOLLYWOOD.mp4  --tsize 400  --save_path ./test_dataset --save y
-```
-- Tracking cannot detect the face in a single image. 
 
 ### Folder Structure
 
