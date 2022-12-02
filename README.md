@@ -102,15 +102,3 @@ python facedetect.py  ```(video/image)```  --name ```"사용할 모델-backbone�
 Q. Why do you only get a height value?  
 A : When the height value is received, the size is changed based on the width and height proportional values of the original frame.     
 ex) ```original frame size : 400 x 200```     &rarr;     ```--tsize 300```     &rarr;    ```changed frame size : 600 x 300```   
-   
-
-#### Evaluation on HollywoodHeads Test Dataset   
-           
-![image (5)](https://user-images.githubusercontent.com/88639269/201271582-48c88999-ae31-4908-b954-8192951bc974.png)
-
-
-### Folder Structure
-
-![image](https://user-images.githubusercontent.com/88639269/201103112-e91dabf0-e2c8-43f8-8203-715b8fece94f.png)
-
-
