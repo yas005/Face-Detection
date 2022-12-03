@@ -43,7 +43,7 @@ cd ..
 cd mAP
 python main.py --pred_path yolox_x_pred --gt_path test_annotations_txt
 ```
-#### YOLOX-X mAP : 70.33% (Train: Wider Face, Test: HollywoodHeads)
+#### YOLOX-X mAP : 70.35% (Train: Wider Face, Test: HollywoodHeads)
 
 ## 4. YOLOX-X + DeepSORT Evaluation on HollywoodHeads Test Dataset
 ```
@@ -58,13 +58,6 @@ python main.py --pred_path yolox_deepsort_pred --gt_path test_annotations_txt
 ```
 #### YOLOX-X + DeepSORT mAP : 71.91% (Train: Wider Face, Test: HollywoodHeads)
 
-## 4. To train YOLOX-X on Custom Dataset (e.g., HollywoodsHead Dataset)
-You need a dataset with COCO style data format.  
-To convert Pascal VOC format to COCO format, please refer [voc2coco](https://github.com/yukkyo/voc2coco)  
-Put your data at ```./YOLOX/datasets/{YOUR_DATASET}```
-```
-python tools/train.py -n yolox-x -d 1 -b 16 --fp16 --logger wandb wandb-project yolox-face
-```
 
 #### Result:
 If the image size is resized smaller than the original image, performance(mAP matrix value) will be lower as expected. 
